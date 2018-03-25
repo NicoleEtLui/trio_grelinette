@@ -1,2 +1,3 @@
 # exclude dependencies file
 trioGrelApp/vendor/*
+./packages\frontend\minimal-react-boilerplate\node_modules/*
