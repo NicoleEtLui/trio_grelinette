@@ -45,3 +45,25 @@ $app->get('/legumes/{id}', function (Request $request, Response $response, array
     echo '{"error": {"text", '.$e->getMessage().'}}';
   }
 });
+
+// get a legumes by its label
+
+$app->get('/legumes/label/{label}', function (Request $request, Response $response, array $args) {
+  $label = $args['label'];
+  $query = "SELECT * from view_all_legumes WHERE label=:label;";
+
+  try {
+    $db = new db();
+
+    $dbConnection = $db->connect();
+
+    $stmt = $dbConnection->prepare($query);
+    $stmt->execute(array(':label' => $label));
+    $legumes = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $db = null;
+
+    echo json_encode($legumes, JSON_UNESCAPED_UNICODE);
+  } catch(PDOException $e) {
+    echo '{"error": {"text", '.$e->getMessage().'}}';
+  }
+});
