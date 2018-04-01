@@ -2,7 +2,6 @@ const path = require('path')
 
 module.exports = {
   entry: [
-    'react-hot-loader/patch',
     './src/index.js'
   ],
   module: {
@@ -10,7 +9,10 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['react-hot-loader', 'babel-loader']
+        use: ['babel-loader'],
+        options: {
+          cacheDirectory: true
+        }
       }
     ]
   },
