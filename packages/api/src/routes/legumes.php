@@ -2,10 +2,10 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-// get all legumes
+// get all legumes /api/public/legumes
 
 $app->get('/legumes', function (Request $request, Response $response){
-    $query = "SELECT * FROM view_all_legumes;";
+    $query = "SELECT * FROM legumes";
 
     try {
       // instance db class
@@ -24,7 +24,7 @@ $app->get('/legumes', function (Request $request, Response $response){
     }
 });
 
-// get a legumes by its id
+// get a legumes by its id /api/public/legumes/1
 
 $app->get('/legumes/{id}', function (Request $request, Response $response, array $args) {
   $id = $args['id'];
@@ -46,7 +46,7 @@ $app->get('/legumes/{id}', function (Request $request, Response $response, array
   }
 });
 
-// get a legumes by its label
+// get a legumes by its label / api/public/legumes/label/tomate
 
 $app->get('/legumes/label/{label}', function (Request $request, Response $response, array $args) {
   $label = $args['label'];
