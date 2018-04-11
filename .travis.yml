@@ -1,8 +1,6 @@
 language: php
-before_install:
-  - phpenv config-rm xdebug.ini
-  - mv .env.travis .env
-  - composer self-update
+php:
+  - 7.0
 install:
   - sudo apt-get -qq install git-ftp
   - composer install --no-interaction
