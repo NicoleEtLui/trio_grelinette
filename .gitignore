@@ -2,3 +2,4 @@
 ./vendor/*
 ./node_modules/*
 www\api\src\config\db.php
+/vendor/

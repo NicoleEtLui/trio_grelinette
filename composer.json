@@ -1,4 +1,6 @@
 {
-    "name": "martin/api",
-    "require": {}
+    "name": "martin/trio_grelinette",
+    "require": {
+        "slim/slim": "3.0"
+    }
 }
