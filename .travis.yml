@@ -5,6 +5,7 @@ install:
   - sudo apt-get -qq install git-ftp
   - composer install --no-interaction
   - npm install
+script: build.sh
 after_script:
   - git config git-ftp.url $FTP_SITE
   - git config git-ftp.user $FTP_USERNAME
