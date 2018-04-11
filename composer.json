@@ -1,6 +1,7 @@
 {
     "name": "martin/trio_grelinette",
     "require": {
-        "slim/slim": "3.0"
+        "slim/slim": "3.0",
+        "phpunit/phpunit": "3.7.*"
     }
 }
