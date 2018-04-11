@@ -1,9 +1,13 @@
 language: php
+install:
+  - sudo apt-get -qq install git-ftp
+  - composer install --no-interaction
+  - npm install
 after_script:
-- git config git-ftp.url $FTP_SITE
-- git config git-ftp.user $FTP_USERNAME
-- git config git-ftp.password $FTP_PASSWORD
-- git ftp push
+  - git config git-ftp.url $FTP_SITE
+  - git config git-ftp.user $FTP_USERNAME
+  - git config git-ftp.password $FTP_PASSWORD
+  - git ftp push
 env:
   matrix:
-  - secure: 3VlpbY6tj7JWj2DPv0iaKfbEd6bcYV+vfKxJ+HP3zjUHiVP+cXibmKuyoovzm73VT6P9//cbvUHm1QxcfcV7kw9fhf4wPvFc4fwaJQVWRz1nKF/AvAizwevV2OH5smUHboU6KZlk3aVvxbPsu5A/vv/MLtr6Lo87iAYXqRsz4fp77Hk8A2DZrHkJ/E239E+B0BzWDE2im5296v1iLDkLCTeYXHxlkdPaDCMnH8I6hs2nOIyooA6Nc3MHkf0T2ISE2yBAdDEii9D2/slx3GnGcP2EnrttfFJKQ9i7nrJWzjhRZ0ycrjAKzbzJ3GeAlxL2V4ETxL4J1u8meNHGHymWg2qX/1D3MqyiT2OH7RvcjcZ5Z149Ba+6CVda9gkmoDor74ExsQMjbNYs6oUk+gfzFGh1BIpMJlA1Ss/5W2X0AQBvnXSKmwwFWabK5VXsN6esuj+s7CTIm7hFngOqrn0P3FlqjB2VU+wFVAr/svTsg1SnWlWIeczmfWd5BYxW4A+81WMOTTCiGZjXFAdFSfAy9y9ucPaN7vu+rk7WX6GnTA7vyuCN4NHE7FoWnXF8itwc+sk6aGUxYCN/bWtI/l6VIyxEFq7dgOKKffwv/4bPYIKeKG+NacHNqjXPKIQaWY8iBBfgQvkSVCtVJRMg3lRYy/agLGdtW3kaiv0UHmCRT88=
+    - secure: 3VlpbY6tj7JWj2DPv0iaKfbEd6bcYV+vfKxJ+HP3zjUHiVP+cXibmKuyoovzm73VT6P9//cbvUHm1QxcfcV7kw9fhf4wPvFc4fwaJQVWRz1nKF/AvAizwevV2OH5smUHboU6KZlk3aVvxbPsu5A/vv/MLtr6Lo87iAYXqRsz4fp77Hk8A2DZrHkJ/E239E+B0BzWDE2im5296v1iLDkLCTeYXHxlkdPaDCMnH8I6hs2nOIyooA6Nc3MHkf0T2ISE2yBAdDEii9D2/slx3GnGcP2EnrttfFJKQ9i7nrJWzjhRZ0ycrjAKzbzJ3GeAlxL2V4ETxL4J1u8meNHGHymWg2qX/1D3MqyiT2OH7RvcjcZ5Z149Ba+6CVda9gkmoDor74ExsQMjbNYs6oUk+gfzFGh1BIpMJlA1Ss/5W2X0AQBvnXSKmwwFWabK5VXsN6esuj+s7CTIm7hFngOqrn0P3FlqjB2VU+wFVAr/svTsg1SnWlWIeczmfWd5BYxW4A+81WMOTTCiGZjXFAdFSfAy9y9ucPaN7vu+rk7WX6GnTA7vyuCN4NHE7FoWnXF8itwc+sk6aGUxYCN/bWtI/l6VIyxEFq7dgOKKffwv/4bPYIKeKG+NacHNqjXPKIQaWY8iBBfgQvkSVCtVJRMg3lRYy/agLGdtW3kaiv0UHmCRT88=
