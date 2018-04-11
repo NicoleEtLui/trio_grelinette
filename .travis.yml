@@ -1,6 +1,4 @@
-language: php
-php:
-  - 7.0
+language: nodejs
 install:
   - sudo apt-get -qq install git-ftp
   - composer install --no-interaction
