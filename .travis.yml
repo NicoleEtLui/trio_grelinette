@@ -1,3 +1,4 @@
+language: php
 after_script:
 - git config git-ftp.url $FTP_SITE
 - git config git-ftp.user $FTP_USERNAME
