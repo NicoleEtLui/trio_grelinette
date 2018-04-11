@@ -1,7 +1,11 @@
 <?php
 class db {
-  private $dbhost = 'triogreliadev.mysql.db';
-  private $dbuser = 'dev';
+  private $dbhost = 'mysql233.sql004';
+  // private $dbuser = 'triogreliadev';
+  // private $dbpw = 'tri0Gr3lin3tt3';
+  // private $dbname = 'triogreliadev';
+  //private $dbhost = 'localhost';
+  private $dbuser = 'triogreliadev';
   private $dbpw = 'tri0Gr3lin3tt3';
   private $dbname = 'triogreliadev';
 

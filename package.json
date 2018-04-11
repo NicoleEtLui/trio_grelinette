@@ -2,10 +2,11 @@
   "name": "minimal-react-boilerplate",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./frontend/src/index",
   "scripts": {
-    "start:dev": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "test": "standard"
+    "start:dev": "webpack-dev-server --watch --config ./webpack.config.js --mode development",
+    "test": "standard",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",

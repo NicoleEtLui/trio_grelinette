@@ -2,17 +2,15 @@ const path = require('path')
 
 module.exports = {
   entry: [
-    './src/index.js'
+    './www/frontend/src/index'
   ],
+  watch: true,
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
-        options: {
-          cacheDirectory: true
-        }
+        use: ['babel-loader']
       }
     ]
   },
@@ -20,12 +18,12 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, 'www/frontend/dist'),
     publicPath: '/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: './www/frontend/dist',
     port: 3000
   }
 }

@@ -1,5 +1,4 @@
 # exclude dependencies file
-packages/api/vendor/*
-trioGrelApp/vendor/*
-packages/frontend/minimal-react-boilerplate/node_modules/*
-packages\api\src\config\db.php
+./vendor/*
+./node_modules/*
+www\api\src\config\db.php
