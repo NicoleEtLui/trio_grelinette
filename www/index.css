@@ -1,0 +1,78 @@
+/* Layout
+ ============================================================================ */
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,700&subset=latin-ext');
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito Sans', 'sans-serif';
+  background-color: #fff;
+  color: #444;
+  margin: 0;
+}
+
+/* make a grid */
+.wrapper {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.content {
+  width: 100%;
+}
+
+/* Style
+ ============================================================================ */
+
+ .content {
+   background: #fff;
+   display: flex;
+   align-items: center;
+   padding: 100px 100px;
+   margin: 20px;
+   border-radius: 3px;
+   color: #fff;
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   color: #333333;
+   font-family: 'Nunito Sans', 'sans-serif';
+   
+ }
+
+ .warning {
+   margin-bottom: 50px;
+   font-size: 1.5em;
+ }
+
+ .warning img {
+   max-width: 8%;
+   margin-bottom: 20px;
+ }
+
+ h1 {
+   padding: 0;
+   margin: 0;
+   font-size: 1.5em;
+   display: block;
+   margin-bottom: 30px;
+ }
+
+a {
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 0;
+  color: white;
+  background:  #FA4234;
+  font-size: 1em;  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  border-radius: 999px;
+  transition: background .2s ease;
+  transform-origin: center;
+ }
+
+a:hover {
+  background: #87D009;
+}
