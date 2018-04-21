@@ -1,5 +1,5 @@
 # exclude dependencies file
 ./vendor/*
 ./node_modules/*
-www\api\src\config\db.php
+./db.php
 /vendor/
