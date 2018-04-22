@@ -3,3 +3,5 @@
 ./node_modules/*
 /vendor/
 db.php
+node_modules/
+vendor/
