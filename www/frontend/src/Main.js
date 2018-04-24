@@ -1,33 +1,51 @@
 import React from 'react'
-import { Card } from 'antd'
-import styled from 'styled-components'
+import {ThemeProvider} from 'styled-components'
+import {Grid, Col, Row} from 'react-styled-flexboxgrid'
+import ListCards from './Container/ListCards'
 
 import SiteWrap from './Layout/SiteWrap'
 
 const Red = {
   background: 'red',
-  height: '20px',
+  height: '200px',
   margin: '30px'
+}
+
+const theme = {
+  flexboxgrid: {
+    // Defaults
+    gridSize: 12, // rem
+    gutterWidth: 1, // rem
+    outerMargin: 2, // rem
+    mediaQuery: 'only screen',
+    container: {
+      sm: 46, // rem
+      md: 61, // rem
+      lg: 76 // rem
+    },
+    breakpoints: {
+      xs: 0, // em
+      sm: 48, // em
+      md: 64, // em
+      lg: 75 // em
+    }
+  }
 }
 
 const Main = () =>
   <SiteWrap>
-    {/* <Row Gutter={30}>
-      <Col span={18} style={MainStyle}>
-        <Card title='Card title' extra={<a href='#'>More</a>} style={{ width: 300 }}>
-          <p>Card content</p>
-          <p>Card content</p>
-          <p>Card content</p>
-        </Card>
-      </Col>
-      <Col span={6} style={Aside}>
-        Panier
-      </Col>
-    </Row> */}
-    <Row>
-      <Col style={Red} lg={6} />
-      <Col style={Red} lg={3} />
-    </Row>
+    <ThemeProvider theme={theme}>
+      <Grid>
+        <Row>
+          <Col lg={9} style={Red}>
+            <ListCards />
+          </Col>
+          <Col lg={3} style={Red}>
+            Panier
+          </Col>
+        </Row>
+      </Grid>
+    </ThemeProvider>
   </SiteWrap>
 
 export default Main

@@ -4,7 +4,7 @@ import SiteWrap from './Layout/SiteWrap'
 import styled from 'styled-components'
 import Leaves from '../assets/svg/leaves.svg'
 
-import { Row } from 'react-flexbox-grid'
+import { Row } from 'react-styled-flexboxgrid'
 
 const Title = styled.div`
   font-weight: bold;
