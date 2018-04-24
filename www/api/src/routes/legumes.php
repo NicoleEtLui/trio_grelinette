@@ -16,8 +16,9 @@ $app->get('/legumes', function (Request $request, Response $response){
       $stmt = $db->query($query);
       $legumes = $stmt->fetchAll(PDO::FETCH_OBJ);
       $db = null;
+      // print_r($legumes);
 
-      return json_encode($legumes, JSON_UNESCAPED_UNICODE);
+      return $response->withJson($legumes, 200, JSON_UNESCAPED_UNICODE);
     } catch(PDOException $e) {
       echo '{"error": {"text", '.$e->getMessage().'}}';
     }
@@ -36,10 +37,10 @@ $app->get('/legumes/{id}', function (Request $request, Response $response, array
 
     $stmt = $dbConnection->prepare($query);
     $stmt->execute(array(':id' => $id));
-    $legumes = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $legume = $stmt->fetchAll(PDO::FETCH_OBJ);
     $db = null;
 
-    return json_encode($legumes, JSON_UNESCAPED_UNICODE);
+    return $response->withJson($legume, 200, JSON_UNESCAPED_UNICODE);
   } catch(PDOException $e) {
     echo '{"error": {"text", '.$e->getMessage().'}}';
   }
