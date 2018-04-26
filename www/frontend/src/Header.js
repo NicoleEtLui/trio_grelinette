@@ -4,7 +4,7 @@ import SiteWrap from './Layout/SiteWrap'
 import styled from 'styled-components'
 import Leaves from '../assets/svg/leaves.svg'
 
-import { Row } from 'react-styled-flexboxgrid'
+import { Row, Col } from 'react-styled-flexboxgrid'
 
 const Title = styled.div`
   font-weight: bold;
@@ -14,6 +14,8 @@ const Title = styled.div`
 `
 const Links = styled.div`
   font-size: 16px;
+  display: flex;
+  justify-content: flex-end;
 `
 const Link = styled.a`
   font-size: 12px;
@@ -26,18 +28,25 @@ const StyledLeavesIcon = styled(Leaves)`
   fill: #AEAEAE;
   margin-right: 10px;
 `
+const StyledRow = styled(Row)`
+  padding: 40px 0;
+`
 
 const Header = () =>
   <SiteWrap>
-    <Row lg={12} between='xs'>
-      <Title>
-        <StyledLeavesIcon />Le trio de la grelinette
-      </Title>
-      <Links>
-        <Link>Commander</Link>
-        <Link>Le projet</Link>
-      </Links>
-    </Row>
+    <StyledRow>
+      <Col lg={3} xs={3}>
+        <Title>
+          <StyledLeavesIcon />Le trio de la grelinette
+        </Title>
+      </Col>
+      <Col lg={9} xs={9}>
+        <Links>
+          <Link>Commander</Link>
+          <Link>Le projet</Link>
+        </Links>
+      </Col>
+    </StyledRow>
   </SiteWrap>
 
 export default Header
