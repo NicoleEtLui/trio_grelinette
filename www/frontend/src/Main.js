@@ -9,6 +9,7 @@ const Red = styled.div`
   background: red;
   minHeight: 200px;
 `
+
 const Main = () =>
   <SiteWrap>
     <Row>

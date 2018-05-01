@@ -5,3 +5,8 @@
 db.php
 node_modules/
 vendor/
+
+#Apache
+log/
+lock/
+run
