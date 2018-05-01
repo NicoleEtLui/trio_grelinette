@@ -3,7 +3,18 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../../vendor/autoload.php';
-require '../../db.php';
+
+// requiring the right db config file
+try {
+  if (file_exists("./private-config/".$_SERVER['SERVER_NAME'].".php"))
+    require_once("./private-config/".$_SERVER['SERVER_NAME'].".php");
+  else
+    require_once('./private-config/db.php' );
+  }
+  catch(Exception $e) {
+    echo "Message : " . $e->getMessage();
+    echo "Code : " . $e->getCode();
+  }
 
 mb_language('uni');
 mb_internal_encoding('UTF-8');

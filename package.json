@@ -4,9 +4,10 @@
   "description": "",
   "main": "./frontend/src/index",
   "scripts": {
-    "start": "concurrently \"npm run start:server\" \"npm run start:dev\"",
+    "start": "concurrently \"npm run start:server\" \"npm run start:dev\" \"npm run start:mysql\"",
     "start:server": "docker run -d -p 8080:80 -v /home/docker/D_DRIVE/Bac3Ephec/TFE/trio_grelinette:/var/www php__apache",
     "start:dev": "webpack-dev-server --mode development",
+    "start:mysql": "docker run mysql",
     "test": "standard",
     "build": "webpack"
   },
