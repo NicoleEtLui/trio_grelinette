@@ -4,10 +4,13 @@
   "description": "",
   "main": "./frontend/src/index",
   "scripts": {
-    "start": "concurrently \"npm run start:server\" \"npm run start:dev\" \"npm run start:mysql\"",
-    "start:server": "docker run -d -p 8080:80 -v /home/docker/D_DRIVE/Bac3Ephec/TFE/trio_grelinette:/var/www php__apache",
+    "start": "concurrently \"npm run start:dev\" \"npm run start:mysql\" \"npm run start:server\"",
+    "stop": "docker stop php_apache & docker stop server_mysql",
+    "init:server": "docker run --name php_apache -d -p 8080:80 --link server_mysql -v /home/docker/D_DRIVE/Bac3Ephec/TFE/trio_grelinette:/var/www php__apache",
+    "start:server": "docker start php_apache",
     "start:dev": "webpack-dev-server --mode development",
-    "start:mysql": "docker run mysql",
+    "init:mysql": "docker run --name server_mysql -e MYSQL_ROOT_PASSWORD=dev -d -p  3306:3306 mysql:5.6 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci",
+    "start:mysql": "docker start server_mysql",
     "test": "standard",
     "build": "webpack"
   },
