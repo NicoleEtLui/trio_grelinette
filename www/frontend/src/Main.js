@@ -14,11 +14,9 @@ const Main = () =>
   <SiteWrap>
     <Row>
       <Col lg={9} xs={9}>
-        <Red>
-          <Row>
-            <ListCards />
-          </Row>
-        </Red>
+        <Row>
+          <ListCards />
+        </Row>
       </Col>
       <Col lg={3} xs={3}>
         <Red>Panier</Red>
