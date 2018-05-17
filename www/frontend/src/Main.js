@@ -1,6 +1,6 @@
 import React from 'react'
 import {Col, Row} from 'react-styled-flexboxgrid'
-import ListCards from './Container/ListCards'
+import ListCardsContainer from './Container/ListCardsContainer'
 
 import SiteWrap from './Layout/SiteWrap'
 import styled from 'styled-components'
@@ -15,7 +15,7 @@ const Main = () =>
     <Row>
       <Col lg={9} xs={9}>
         <Row>
-          <ListCards />
+          <ListCardsContainer />
         </Row>
       </Col>
       <Col lg={3} xs={3}>
