@@ -9,14 +9,24 @@ class ListCardsContainer extends React.Component {
     super()
     this.state = {
       legumesList: [],
-      cart: []
+      cart: [],
+      quantity: 0
     }
 
     this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.updateQuantity = this.updateQuantity.bind(this);
   }
 
   handleAddToCart (selectedProducts) {
     // add legumes ot cart
+    console.log(selectedProducts)
+  }
+
+  updateQuantity (qty) {
+    console.log('quantity added...')
+    this.setState({
+      quantity: qty
+    })
   }
 
   render () {
@@ -29,7 +39,11 @@ class ListCardsContainer extends React.Component {
       return 'error'
     }
     if (legumesFetch.fulfilled) {
-      return <ListCards legumesList={legumesFetch.value} addToCart={this.handleAddToCart} />
+      return <ListCards
+        legumesList={legumesFetch.value}
+        addToCart={this.handleAddToCart}
+        productQuantity={this.state.quantity}
+        updateQuantity={this.updateQuantity} />
     }
   }
 }

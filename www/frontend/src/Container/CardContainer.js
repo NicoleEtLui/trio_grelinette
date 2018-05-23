@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-import { Card } from '../Component/Card'
+import Card from '../Component/Card'
 
 class CardContainer extends React.Component {
   constructor () {
@@ -25,7 +25,11 @@ class CardContainer extends React.Component {
   }
   render () {
     return (
-      <Card />
+      <Card
+        legume={this.props.legume}
+        productQuantity={this.props.productQuantity}
+        updateQuantity={this.props.updateQuantity}
+      />
     )
   }
 }

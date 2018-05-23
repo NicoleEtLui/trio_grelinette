@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { Card } from 'antd'
 
-import { Counter } from './Counter'
+import Counter from './Counter'
 import { colors } from '../../style/variables'
 
 const StyledCard = styled(Card)`
@@ -24,16 +24,22 @@ const CardUnit = styled.div`
   text-align: center;
 `
 
-const CardLayout = (
-  legume
-) => (
+const CardLayout = ({
+  legume,
+  productQuantity,
+  updateQuantity
+}) => (
   <StyledCard
     cover={<img alt='example' src='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png' />}
     bordered={false}
     bodyStyle={{padding: '5px 10px'}}
+    legume={legume}
   >
     <CardTitle>{legume.label}</CardTitle>
-    <Counter productQuantity={1} />
+    <Counter
+      productQuantity={productQuantity}
+      updateQuantity={updateQuantity}
+    />
     <CardUnit>leg.unit</CardUnit>
   </StyledCard>
 )

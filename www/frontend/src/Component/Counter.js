@@ -74,7 +74,9 @@ class Counter extends Component {
   render () {
     return (
       <CardButtonGroup>
-        <CardButton onClick={this.decrement} ><Minus style={StyleButtonIcon} /></CardButton>
+        <CardButton onClick={this.decrement} >
+          <Minus style={StyleButtonIcon} />
+        </CardButton>
         <CardButton>{this.state.value}</CardButton>
         <CardButton onClick={this.increment}>
           <Plus style={StyleButtonIcon} />
