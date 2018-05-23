@@ -39,6 +39,7 @@ const CardLayout = ({
     <Counter
       productQuantity={productQuantity}
       updateQuantity={updateQuantity}
+      legume={legume}
     />
     <CardUnit>leg.unit</CardUnit>
   </StyledCard>

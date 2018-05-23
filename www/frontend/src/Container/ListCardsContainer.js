@@ -14,18 +14,52 @@ class ListCardsContainer extends React.Component {
     }
 
     this.handleAddToCart = this.handleAddToCart.bind(this)
-    this.updateQuantity = this.updateQuantity.bind(this);
+    this.updateQuantity = this.updateQuantity.bind(this)
   }
 
-  handleAddToCart (selectedProducts) {
+  handleAddToCart (qty, selectedProduct) {
     // add legumes ot cart
-    console.log(selectedProducts)
+    console.log(selectedProduct)
+    let cartItem = this.state.cart
+    let productId = selectedProduct.leg_id
+    let productQty = qty
+    console.log(productQty)
+    if (this.checkProduct(productId)) {
+      let index = cartItem.findIndex(x => x.leg_id === productId)
+      cartItem[index].quantity = productQty
+      this.setState({
+        cart: cartItem
+      })
+    } else {
+      console.log(cartItem)
+      selectedProduct.quantity = productQty
+      cartItem.push(selectedProduct)
+    }
+    this.setState({
+      cart: cartItem
+    })
   }
 
-  updateQuantity (qty) {
-    console.log('quantity added...')
+  handleRemoveProduct (selectedProduct) {
+    console.log(selectedProduct)
+  }
+
+  updateQuantity (qty, selectedProduct) {
     this.setState({
       quantity: qty
+    })
+    if (qty >= 1) {
+      this.handleAddToCart(qty, selectedProduct)
+    }
+    if (qty === 0) {
+      this.handleRemoveProduct(qty, selectedProduct)
+    }
+  }
+
+  checkProduct (productId) {
+    let cart = this.state.cart
+    return cart.some((item) => {
+      return item.leg_id === productId
     })
   }
 

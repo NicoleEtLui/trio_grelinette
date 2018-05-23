@@ -54,19 +54,19 @@ class Counter extends Component {
     this.setState(prevState => ({
       value: Number(prevState.value) + 1
     }), () => {
-      this.props.updateQuantity(this.state.value)
+      this.props.updateQuantity(this.state.value, this.props.legume)
     })
     e.preventDefault()
   }
 
   decrement (e) {
     e.preventDefault()
-    if (this.state.value <= 1) { return this.state.value }
+    if (this.state.value <= 0) { return this.state.value }
     else {
       this.setState(prevState => ({
         value: Number(prevState.value) - 1
       }), () => {
-        this.props.updateQuantity(this.state.value)
+        this.props.updateQuantity(this.state.value, this.props.legume)
       })
     }
   }
