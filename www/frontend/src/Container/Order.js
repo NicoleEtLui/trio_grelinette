@@ -4,6 +4,7 @@ import { Spin } from 'antd'
 import {Col, Row} from 'react-styled-flexboxgrid'
 
 import ListCards from '../Component/ListCards'
+import Cart from '../Component/Cart'
 
 class Order extends React.Component {
   constructor () {
@@ -93,7 +94,7 @@ class Order extends React.Component {
           </Row>
         </Col>
         <Col lg={3} xs={3}>
-          <div>Panier</div>
+          <Cart cart={this.state.cart}>Panier</Cart>
         </Col>
       </Fragment>
     }
