@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-refetch'
 import { Spin } from 'antd'
+import {Col, Row} from 'react-styled-flexboxgrid'
 
 import ListCards from '../Component/ListCards'
 
-class ListCardsContainer extends React.Component {
+class Order extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -80,11 +81,21 @@ class ListCardsContainer extends React.Component {
       return 'error'
     }
     if (legumesFetch.fulfilled) {
-      return <ListCards
-        legumesList={legumesFetch.value}
-        addToCart={this.handleAddToCart}
-        productQuantity={this.state.quantity}
-        updateQuantity={this.updateQuantity} />
+      return <Fragment>
+        <Col lg={9} xs={9}>
+          <Row>
+            <ListCards
+              legumesList={legumesFetch.value}
+              addToCart={this.handleAddToCart}
+              productQuantity={this.state.quantity}
+              updateQuantity={this.updateQuantity}
+            />
+          </Row>
+        </Col>
+        <Col lg={3} xs={3}>
+          <div>Panier</div>
+        </Col>
+      </Fragment>
     }
   }
 }
@@ -93,4 +104,4 @@ export default connect(props => ({
   // legumesFetch: `http://192.168.99.100:8080/api/legumes`
   legumesFetch: `http://www.triogrelinette.be/api/legumes`,
   then: legumesFetch => this.setState({ legumesList: legumesFetch })
-}))(ListCardsContainer)
+}))(Order)
