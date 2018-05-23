@@ -42,6 +42,13 @@ class ListCardsContainer extends React.Component {
 
   handleRemoveProduct (selectedProduct) {
     console.log(selectedProduct)
+    let cart = this.state.cart
+    let id = selectedProduct.leg_id
+    let index = cart.findIndex((x => x.leg_id === id))
+    cart.splice(index, 1)
+    this.setState({
+      cart: cart
+    })
   }
 
   updateQuantity (qty, selectedProduct) {
