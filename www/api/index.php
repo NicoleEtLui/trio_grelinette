@@ -16,11 +16,21 @@ try {
     echo "Code : " . $e->getCode();
   }
 
+// require ORM
+require_once '../../vendor/j4mie/idiorm/idiorm.php';
+require_once '../../vendor/j4mie/paris/paris.php';
+
+require("./src/Models/Legumes.php");
+
 mb_language('uni');
 mb_internal_encoding('UTF-8');
 
+// no use of namespace when translating table name
+Model::$short_table_names = true;
+
 $app = new \Slim\App(array('debug' => true));
 
+//---------------- temp: we can delete it normally, used to handle CROSS problem
 $app->options('/{routes:.+}', function ($request, $response, $args) {
   return $response;
 });
@@ -32,6 +42,7 @@ $app->add(function ($req, $res, $next) {
           ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
           ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 });
+// ---------------------------------------------------------------------end temp
 
 require './src/routes/legumes.php';
 require './src/routes/commandes.php';

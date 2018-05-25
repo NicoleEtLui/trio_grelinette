@@ -102,7 +102,7 @@ class Order extends React.Component {
 }
 
 export default connect(props => ({
-  // legumesFetch: `http://192.168.99.100:8080/api/legumes`
-  legumesFetch: `http://www.triogrelinette.be/api/legumes`,
+  legumesFetch: `http://192.168.99.100:8080/api/legumes`,
+  // legumesFetch: `http://www.triogrelinette.be/api/legumes`,
   then: legumesFetch => this.setState({ legumesList: legumesFetch })
 }))(Order)

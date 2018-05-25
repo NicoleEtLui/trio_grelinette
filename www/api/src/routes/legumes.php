@@ -7,18 +7,24 @@ use \Psr\Http\Message\ResponseInterface as Response;
 $app->get('/legumes', function (Request $request, Response $response){
     $query = "SELECT * FROM legumes";
 
+    // try {
+    //   // instance db class
+    //   $db = new db();
+
+    //   $db = $db->connect();
+
+    //   $stmt = $db->query($query);
+    //   $legumes = $stmt->fetchAll(PDO::FETCH_OBJ);
+    //   $db = null;
+    //   // print_r($legumes);
+
+    //   return $response->withJson($legumes, 200, JSON_UNESCAPED_UNICODE);
+    // } catch(PDOException $e) {
+    //   echo '{"error": {"text", '.$e->getMessage().'}}';
+    // }
     try {
-      // instance db class
-      $db = new db();
-
-      $db = $db->connect();
-
-      $stmt = $db->query($query);
-      $legumes = $stmt->fetchAll(PDO::FETCH_OBJ);
-      $db = null;
-      // print_r($legumes);
-
-      return $response->withJson($legumes, 200, JSON_UNESCAPED_UNICODE);
+      $legumes = Legumes::find_many();
+      echo $legumes;
     } catch(PDOException $e) {
       echo '{"error": {"text", '.$e->getMessage().'}}';
     }
