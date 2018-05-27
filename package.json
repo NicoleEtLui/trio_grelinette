@@ -6,10 +6,12 @@
   "scripts": {
     "start": "concurrently \"npm run start:dev\" \"npm run start:mysql\" \"npm run start:server\"",
     "stop": "docker stop php_apache & docker stop server_mysql",
+    "init:all": "npm run init:mysql && npm run init:server",
+    "rm:all": "npm stop && docker rm server_mysql && docker rm php_apache",
     "init:server": "docker run --name php_apache -d -p 8080:80 --link server_mysql -v /home/docker/TFE/trio_grelinette:/var/www php__apache",
     "start:server": "docker start php_apache",
     "start:dev": "webpack-dev-server --mode development",
-    "init:mysql": "docker run --name server_mysql -e MYSQL_ROOT_PASSWORD=dev -d -p  3306:3306 mysql:5.6 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci",
+    "init:mysql": "docker run --name server_mysql -e MYSQL_ROOT_PASSWORD=dev -d -p 3306:3306 -v /home/docker/TFE/ressources:/docker-entrypoint-initdb.d mysql:5.6 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci",
     "start:mysql": "docker start server_mysql",
     "test": "standard",
     "build": "webpack"
