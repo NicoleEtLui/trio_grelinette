@@ -2,9 +2,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import CartItem from './CartItem'
 import { colors } from '../../style/variables'
-import Basket from '../../assets/svg/basket.svg'
+import CartItem from '../Component/CartItem'
+import CartForm from '../Container/CartForm'
 
 const StyledCart = styled.div`
   box-shadow: 0 0 15px rgba(51, 51, 51, .15);
@@ -18,21 +18,6 @@ const CartTitle = styled.div`
   padding-bottom: 30px;
   margin: 0 20px;
 `
-
-const CartButton = styled.div`
-  background: ${colors.dark__lt};
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  color: #fff;
-  padding: 20px 15px;
-  justify-content: space-between;
-`
-const StyledBasket = styled(Basket)`
-  fill: #fff;
-  width: 28px;
-  height: 34px;
-`
 const Cart = ({
   cart
 }) => (
@@ -41,10 +26,7 @@ const Cart = ({
     {cart.map(legume =>
       <CartItem key={legume.leg_id} legume={legume} />
     )}
-    <CartButton>
-      Valider ma commande
-      <StyledBasket />
-    </CartButton>
+    <CartForm legumes={cart} />
   </StyledCart>
 )
 

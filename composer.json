@@ -3,8 +3,7 @@
     "require": {
         "slim/slim": "3.0",
         "phpunit/phpunit": "3.7.*",
-        "j4mie/idiorm": "^1.5",
-        "j4mie/paris": "^1.5"
+        "catfan/medoo": "^1.5"
     },
     "scripts": {
         "test": "./vendor/bin/phpunit"
