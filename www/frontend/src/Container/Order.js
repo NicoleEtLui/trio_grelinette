@@ -46,7 +46,7 @@ class Order extends React.Component {
     console.log(selectedProduct)
     let cart = this.state.cart
     let id = selectedProduct.leg_id
-    let index = cart.findIndex((x => x.leg_id === id))
+    let index = cart.findIndex(x => x.leg_id === id)
     cart.splice(index, 1)
     this.setState({
       cart: cart
@@ -102,7 +102,6 @@ class Order extends React.Component {
 }
 
 export default connect(props => ({
-  legumesFetch: `http://192.168.99.100:8080/api/legumes`,
-  // legumesFetch: `http://www.triogrelinette.be/api/legumes`,
+  legumesFetch: process.env.NODE_ENV === 'production' ? `/api/legumes` : `http://192.168.99.100:8080/api/legumes`,
   then: legumesFetch => this.setState({ legumesList: legumesFetch })
 }))(Order)
