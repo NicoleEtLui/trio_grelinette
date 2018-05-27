@@ -4,6 +4,12 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../../vendor/autoload.php';
 
+// require ORM
+require_once '../../vendor/j4mie/idiorm/idiorm.php';
+require_once '../../vendor/j4mie/paris/paris.php';
+
+require("./src/Models/Legumes.php");
+
 // requiring the right db config file
 try {
   if (file_exists("./private-config/".$_SERVER['SERVER_NAME'].".php"))
@@ -16,11 +22,11 @@ try {
     echo "Code : " . $e->getCode();
   }
 
-// require ORM
-require_once '../../vendor/j4mie/idiorm/idiorm.php';
-require_once '../../vendor/j4mie/paris/paris.php';
+$db = new db();
 
-require("./src/Models/Legumes.php");
+ORM::configure('mysql:host='.$db->getHost().';dbname='.$db->getName());
+ORM::configure('username', $db->getUser());
+ORM::configure('password', $db->getPwd());
 
 mb_language('uni');
 mb_internal_encoding('UTF-8');
@@ -31,17 +37,17 @@ Model::$short_table_names = true;
 $app = new \Slim\App(array('debug' => true));
 
 //---------------- temp: we can delete it normally, used to handle CROSS problem
-$app->options('/{routes:.+}', function ($request, $response, $args) {
-  return $response;
-});
+  $app->options('/{routes:.+}', function ($request, $response, $args) {
+    return $response;
+  });
 
-$app->add(function ($req, $res, $next) {
-  $response = $next($req, $res);
-  return $response
-          ->withHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
-          ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-          ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-});
+  $app->add(function ($req, $res, $next) {
+    $response = $next($req, $res);
+    return $response
+            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  });
 // ---------------------------------------------------------------------end temp
 
 require './src/routes/legumes.php';
