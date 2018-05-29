@@ -54,10 +54,9 @@ class CartForm extends React.Component {
               name='email'
               placeholder={values.email}
               onChange={handleChange} />
-            <CartButton type='submit'>
+            <button type='submit'>
               Valider ma commande
-              <StyledBasket />
-            </CartButton>
+            </button>
           </Form>
         )}
       />

@@ -28,6 +28,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "concurrently": "^3.5.1",
     "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
     "less": "^3.0.2",
     "less-loader": "^4.1.0",
     "less-vars-to-js": "^1.2.1",
@@ -42,8 +43,10 @@
   "dependencies": {
     "antd": "^3.4.2",
     "formik": "^0.11.11",
+    "moment": "^2.22.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-portal": "^4.1.5",
     "react-refetch": "^1.0.4",
     "styled-components": "^3.2.6"
   }

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { colors } from '../../style/variables'
 import CartItem from '../Component/CartItem'
-import CartForm from '../Container/CartForm'
+import CartPortal from './CartPortal'
 
 const StyledCart = styled.div`
   box-shadow: 0 0 15px rgba(51, 51, 51, .15);
@@ -26,7 +26,7 @@ const Cart = ({
     {cart.map(legume =>
       <CartItem key={legume.leg_id} legume={legume} />
     )}
-    <CartForm legumes={cart} />
+    <CartPortal />
   </StyledCart>
 )
 
