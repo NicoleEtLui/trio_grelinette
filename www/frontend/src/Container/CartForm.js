@@ -1,65 +1,98 @@
 
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Formik, Form } from 'formik'
 import { connect } from 'react-refetch'
+import { Input } from 'antd'
 import styled from 'styled-components'
 
-import Basket from '../../assets/svg/basket.svg'
-import { colors } from '../../style/variables'
+import RelayPoint from './RelayPoint'
 
 const moment = require('moment')
 
-const StyledBasket = styled(Basket)`
-  fill: #fff;
-  width: 28px;
-  height: 34px;
+const InputAndLabel = styled.div`
+  margin-bottom: 20px;
 `
-const CartButton = styled.button`
-  background: ${colors.dark__lt};
-  border: none;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  color: #fff;
-  padding: 20px 15px;
-  justify-content: space-between;
+const Label = styled.label`
+  font-weight: bold;
 `
 class CartForm extends React.Component {
   render () {
     let commande = {
       'cli_id': '',
+      'cli_name': '',
+      'cli_tel': '',
       'date_com': moment().format('YYYY-MM-DD'),
-      'listeLegumes': this.props.legumes
+      'point_relais_id': '',
+      'listeLegumes': this.props.cart
     }
     return (
-      <Formik
-        initialValues={{
-          email: 'machin@example.com'
-        }}
-        isSubmitting
-        onSubmit={
-          values => {
-            commande.cli_id = values.email
-            this.props.postCommande(commande)
+      <Fragment>
+        {/* is a recap of the order necessary ? */}
+        {/* {this.props.cart.cart.map(legume =>
+          <CartItem key={legume.leg_id} legume={legume} />
+        )} */}
+        <Formik
+          initialValues={{
+            email: 'machin@example.com',
+            name: 'Dupont Jean'
+          }}
+          isSubmitting
+          cart={this.props.cart}
+          onSubmit={
+            values => {
+              commande.cli_id = values.email
+              commande.cli_name = values.name
+              commande.cli_tel = values.tel
+              commande.point_relais_id = values.relayPoint
+              this.props.postCommande(commande)
+            }
           }
-        }
-        render={({
-          values,
-          handleChange
-        }) => (
-          <Form>
-            <input
-              type='email'
-              name='email'
-              placeholder={values.email}
-              onChange={handleChange} />
-            <button type='submit'>
-              Valider ma commande
-            </button>
-          </Form>
-        )}
-      />
+          render={({
+            values,
+            handleChange
+          }) => (
+            <Form>
+              <InputAndLabel>
+                <Label htmlFor='email'>Email</Label>
+                <Input
+                  type='email'
+                  name='email'
+                  id='email'
+                  placeholder={values.email}
+                  onChange={handleChange}
+                  required
+                />
+              </InputAndLabel>
+              <InputAndLabel>
+                <Label htmlFor='name'>Nom et prénom</Label>
+                <Input
+                  type='name'
+                  name='name'
+                  id='name'
+                  placeholder={values.name}
+                  onChange={handleChange}
+                  required
+                />
+              </InputAndLabel>
+              <InputAndLabel>
+                <Label htmlFor='tel'>N° de téléphone</Label>
+                <Input
+                  type='tel'
+                  name='tel'
+                  id='tel'
+                  placeholder={values.tel}
+                  onChange={handleChange}
+                  required
+                />
+              </InputAndLabel>
+              <RelayPoint handleChange={handleChange} />
+              <button type='submit'>
+                Valider ma commande
+              </button>
+            </Form>
+          )}
+        />
+      </Fragment>
     )
   }
 }
@@ -70,7 +103,7 @@ const ConnectedCartForm = connect(props => ({
       url: `http://192.168.99.100:8080/api/commandes/add`,
       method: 'POST',
       body: JSON.stringify({ commande }),
-      then: console.log('post then')
+      then: console.log(commande)
     }
   })
 }))(CartForm)

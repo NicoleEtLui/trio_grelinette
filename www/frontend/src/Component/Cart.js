@@ -26,7 +26,7 @@ const Cart = ({
     {cart.map(legume =>
       <CartItem key={legume.leg_id} legume={legume} />
     )}
-    <CartPortal />
+    <CartPortal cart={cart} />
   </StyledCart>
 )
 

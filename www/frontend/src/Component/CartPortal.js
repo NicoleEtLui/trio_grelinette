@@ -29,6 +29,7 @@ const StyledPortal = styled.div`
   width: 600px;
   z-index: 1000;
   margin: 0 15px;
+  padding: 30px;
 `
 
 const CartButton = styled.button`
@@ -57,7 +58,9 @@ const StyledBasket = styled(Basket)`
   height: 34px;
 `
 
-const CartPortal = () => (
+const CartPortal = (
+  cart
+) => (
   <PortalWithState closeOnOutsideClick closeOnEsc>
     {({ openPortal, closePortal, isOpen, portal }) => (
       <Fragment>
@@ -69,7 +72,7 @@ const CartPortal = () => (
         {portal(
           <StyledPortal>
             <EscapeButton onClick={closePortal} />
-            <CartForm />
+            <CartForm cart={cart} />
           </StyledPortal>
         )}
       </Fragment>

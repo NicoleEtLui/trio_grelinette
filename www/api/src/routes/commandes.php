@@ -2,7 +2,7 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-$app->get('/commandes/pointsrelais', function(Request $request, Response $response) use ($database) {
+$app->get('/commandes/points-relais', function(Request $request, Response $response) use ($database) {
   try {
     $points_relais = $database->select("points_relais", [
       "point_relais_id",
@@ -22,15 +22,21 @@ $app->post('/commandes/add', function(Request $request, Response $response) use 
     //parsedbody slim
     $database->insert("commandes", [
       "cli_id" => $data['commande']['cli_id'],
-      "date_com" => "2018-05-27"
+      "cli_name" => $data['commande']['cli_name'],
+      "cli_tel" => $data['commande']['cli_tel'],
+      "date_com" => $data['commande']['date_com'],
+      "point_relais_id" => $data['commande']['point_relais_id']
     ]);
-    //récupérer l'i de la commande pour le passer a comm_leg
+    $last_commande_id = $database->id();
     //map over each array command
-    $database->insert("com_leg", [
-      "com_id" => "8",
-      "leg_id" => "1",
-      "nbUnite" => "45"
-    ]);
+    foreach ($data['commande']['listeLegumes']['cart'] as $value){
+      $database->insert("com_leg", [
+        "com_id" => $last_commande_id,
+        "leg_id" => $value['leg_id'],
+        "nbUnite" => $value['quantity']
+      ]);
+    }
+
   } catch(PDOException $e) {
     echo '{"error": {"text", '.$e->getMessage().'}}';
   }

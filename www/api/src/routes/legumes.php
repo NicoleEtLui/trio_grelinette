@@ -10,7 +10,10 @@ $app->get('/legumes', function (Request $request, Response $response ) use ($dat
         "leg_id",
         "label",
         "photo",
-        "leg_desc"
+        "leg_desc",
+        "unite",
+        "prix",
+        "quantite"
       ]);
       return $response->withJson($legumes, 200, JSON_UNESCAPED_UNICODE);
     } catch(PDOException $e) {
