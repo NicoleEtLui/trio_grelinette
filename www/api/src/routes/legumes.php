@@ -13,7 +13,7 @@ $app->get('/legumes', function (Request $request, Response $response ) use ($dat
         "leg_desc",
         "unite",
         "prix",
-        "quantite"
+        "stock"
       ]);
       return $response->withJson($legumes, 200, JSON_UNESCAPED_UNICODE);
     } catch(PDOException $e) {
