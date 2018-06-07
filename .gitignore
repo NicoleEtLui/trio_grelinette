@@ -5,8 +5,9 @@
 db.php
 node_modules/
 vendor/
+www/frontend/dist/bundle
 
-#Apache
+# Apache
 log/
 lock/
 run
