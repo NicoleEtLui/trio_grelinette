@@ -21,11 +21,9 @@ class Order extends React.Component {
 
   handleAddToCart (qty, selectedProduct) {
     // add legumes ot cart
-    console.log(selectedProduct)
     let cartItem = this.state.cart
     let productId = selectedProduct.leg_id
     let productQty = qty
-    console.log(productQty)
     if (this.checkProduct(productId)) {
       let index = cartItem.findIndex(x => x.leg_id === productId)
       cartItem[index].quantity = productQty
@@ -33,7 +31,6 @@ class Order extends React.Component {
         cart: cartItem
       })
     } else {
-      console.log(cartItem)
       selectedProduct.quantity = productQty
       cartItem.push(selectedProduct)
     }
@@ -43,7 +40,6 @@ class Order extends React.Component {
   }
 
   handleRemoveProduct (selectedProduct) {
-    console.log(selectedProduct)
     let cart = this.state.cart
     let id = selectedProduct.leg_id
     let index = cart.findIndex(x => x.leg_id === id)

@@ -12,6 +12,11 @@ const StyledCard = styled(Card)`
   margin-bottom: 30px !important;
 `
 
+const StyledImg = styled.img`
+  height: 130px;
+  object-fit: cover;
+`
+
 const CardTitle = styled.div`
   font-size: 22px;
   font-weight: bold;
@@ -22,6 +27,7 @@ const CardTitle = styled.div`
 const CardUnit = styled.div`
   font-size: 12px;
   text-align: center;
+  margin-top: 15px;
 `
 
 const CardLayout = ({
@@ -30,7 +36,7 @@ const CardLayout = ({
   updateQuantity
 }) => (
   <StyledCard
-    cover={<img alt='example' src='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png' />}
+    cover={<StyledImg alt='example' src={`./assets/${legume.photo}`} />}
     bordered={false}
     bodyStyle={{padding: '5px 10px'}}
     legume={legume}
@@ -41,7 +47,7 @@ const CardLayout = ({
       updateQuantity={updateQuantity}
       legume={legume}
     />
-    <CardUnit>leg.unit</CardUnit>
+    <CardUnit>{legume.prix} €/ {legume.unite}</CardUnit>
   </StyledCard>
 )
 

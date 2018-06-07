@@ -33,7 +33,7 @@ $app->post('/commandes/add', function(Request $request, Response $response) use 
       $database->insert("com_leg", [
         "com_id" => $last_commande_id,
         "leg_id" => $value['leg_id'],
-        "nbUnite" => $value['quantity']
+        "nb_unite" => $value['quantity']
       ]);
     }
 
