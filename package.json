@@ -4,7 +4,7 @@
   "description": "",
   "main": "./frontend/src/index",
   "scripts": {
-    "start": "concurrently \"npm run start:dev\" \"npm run start:mysql\" \"npm run start:server\"",
+    "start": "concurrently \"npm run start:dev\" \"npm run start:mysql && npm run start:server\"",
     "stop": "docker stop php_apache & docker stop server_mysql",
     "init:all": "npm run init:mysql && npm run init:server",
     "rm:all": "npm stop && docker rm server_mysql && docker rm php_apache",

@@ -22,17 +22,19 @@ require './src/config/medoo_conf.php';
 $app = new \Slim\App(array('debug' => true));
 
 // CROS DEV
-  $app->options('/{routes:.+}', function ($request, $response, $args) {
-    return $response;
-  });
+$app->options('/{routes:.+}', function ($request, $response, $args) {
+  return $response;
+});
 
-  $app->add(function ($req, $res, $next) {
-    $response = $next($req, $res);
-    return $response
-            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
-            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-  });
+$app->add(function ($req, $res, $next) {
+  $response = $next($req, $res);
+  return $response
+          ->withHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+          ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization, X-CSRF-Token')
+          ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+          ->withHeader('Access-Control-Allow-Credentials', 'true');
+});
+
 
 //ROUTES
 require './src/routes/legumes.php';
@@ -41,9 +43,9 @@ require './src/routes/commandes.php';
 //CROS DEV
 // Catch-all route to serve a 404 Not Found page if none of the routes match
 // NOTE: make sure this route is defined last
-$app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
-  $handler = $this->notFoundHandler; // handle using the default Slim page not found handler
-  return $handler($req, $res);
-});
+// $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function($req, $res) {
+//   $handler = $this->notFoundHandler; // handle using the default Slim page not found handler
+//   return $handler($req, $res);
+// });
 
 $app->run();

@@ -102,8 +102,8 @@ const ConnectedCartForm = connect(props => ({
     postCommandeResponse: {
       url: `http://192.168.99.100:8080/api/commandes/add`,
       method: 'POST',
-      body: JSON.stringify({ commande }),
-      then: console.log(commande)
+      body: JSON.stringify({ ...commande }),
+      then: console.log({ ...commande })
     }
   })
 }))(CartForm)

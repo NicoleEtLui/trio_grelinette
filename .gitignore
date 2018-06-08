@@ -11,3 +11,4 @@ www/frontend/dist/bundle
 log/
 lock/
 run
+www/frontend/dist/bundle.js
