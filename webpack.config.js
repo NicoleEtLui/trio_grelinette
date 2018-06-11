@@ -51,6 +51,10 @@ module.exports = {
   },
   devServer: {
     contentBase: './www/frontend/dist',
-    port: 3000
+    port: 3000,
+    historyApiFallback: true,
+    proxy: {
+      '/api': 'http://192.168.99.100:8080'
+    }
   }
 }
