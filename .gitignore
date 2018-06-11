@@ -12,3 +12,6 @@ log/
 lock/
 run
 www/frontend/dist/bundle.js
+
+# ENV
+.env
