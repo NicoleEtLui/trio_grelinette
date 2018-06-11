@@ -2,6 +2,23 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
+$app->get('/commandes', function(Request $request, Response $response) use ($database) {
+  try {
+    $commandes = $database->select("commandes", [
+      "com_id",
+      "cli_id",
+      "cli_name",
+      "cli_tel",
+      "date_com",
+      "point_relais_id",
+      "prix"
+    ]);
+    return $response->withJson($commandes, 200, JSON_UNESCAPED_UNICODE);
+  } catch(PDOException $e) {
+    echo '{"error": {"text", '.$e->getMessage().'}}';
+  }
+});
+
 $app->get('/commandes/points-relais', function(Request $request, Response $response) use ($database) {
   try {
     $points_relais = $database->select("points_relais", [
@@ -25,6 +42,7 @@ $app->post('/commandes/add', function(Request $request, Response $response) use 
       "date_com" => $data['date_com'],
       "point_relais_id" => $data['point_relais_id']
     ]);
+
     $last_commande_id = $database->id();
     //map over each array command
     foreach ($data['listeLegumes']['cart'] as $value){
