@@ -98,6 +98,6 @@ class Order extends React.Component {
 }
 
 export default connect(props => ({
-  legumesFetch: process.env.NODE_ENV === 'production' ? `/api/legumes` : `http://192.168.99.100:8080/api/legumes`,
+  legumesFetch: `/api/legumes`,
   then: legumesFetch => this.setState({ legumesList: legumesFetch })
 }))(Order)

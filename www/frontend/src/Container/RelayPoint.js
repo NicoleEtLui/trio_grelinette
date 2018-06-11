@@ -70,5 +70,5 @@ class RelayPoint extends React.Component {
 }
 
 export default connect(props => ({
-  relayPointFetch: process.env.NODE_ENV === 'production' ? `/api/commandes/points-relais` : `http://192.168.99.100:8080/api//commandes/points-relais`
+  relayPointFetch: process.env.NODE_ENV === 'production' ? `/api/commandes/points-relais` : `/api/commandes/points-relais`
 }))(RelayPoint)
