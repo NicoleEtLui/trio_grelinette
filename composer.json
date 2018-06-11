@@ -3,7 +3,11 @@
     "require": {
         "slim/slim": "3.0",
         "phpunit/phpunit": "3.7.*",
-        "catfan/medoo": "^1.5"
+        "catfan/medoo": "^1.5",
+        "tuupola/slim-jwt-auth": "^3.0",
+        "firebase/php-jwt": "^5.0",
+        "tuupola/base62": "^0.10.0",
+        "vlucas/phpdotenv": "^2.4"
     },
     "scripts": {
         "test": "./vendor/bin/phpunit"
