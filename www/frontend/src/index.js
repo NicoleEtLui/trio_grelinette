@@ -1,6 +1,7 @@
 
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import Header from './Header'
 import Main from './Main'
@@ -30,12 +31,14 @@ const theme = {
 }
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <Fragment>
-      <Header />
-      <Main />
-      <Footer />
-    </Fragment>
-  </ThemeProvider>,
+  <Router>
+    <ThemeProvider theme={theme}>
+      <Fragment>
+        <Header />
+        <Main />
+        <Footer />
+      </Fragment>
+    </ThemeProvider>
+  </Router>,
   document.getElementById('app')
 )

@@ -1,10 +1,11 @@
 import React from 'react'
-import SiteWrap from './Layout/SiteWrap'
+import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 import Leaves from '../assets/svg/leaves.svg'
-
 import { Row, Col } from 'react-styled-flexboxgrid'
+
+import SiteWrap from './Layout/SiteWrap'
 
 const Title = styled.div`
   font-weight: bold;
@@ -17,7 +18,7 @@ const Links = styled.div`
   display: flex;
   justify-content: flex-end;
 `
-const Link = styled.a`
+const StyledLink = styled.span`
   font-size: 12px;
   color: black;
   margin-left: 30px;
@@ -42,8 +43,8 @@ const Header = () =>
       </Col>
       <Col lg={9} xs={9}>
         <Links>
-          <Link>Commander</Link>
-          <Link>Le projet</Link>
+          <Link exact to='/'><StyledLink>Commander</StyledLink></Link>
+          <Link to='/projet'><StyledLink>Le projet</StyledLink></Link>
         </Links>
       </Col>
     </StyledRow>
