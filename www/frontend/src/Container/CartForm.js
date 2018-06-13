@@ -2,8 +2,10 @@
 import React, { Fragment } from 'react'
 import { Formik, Form } from 'formik'
 import { connect } from 'react-refetch'
-import { Input } from 'antd'
+import { Input, notification } from 'antd'
 import styled from 'styled-components'
+
+import { colors } from '../../style/variables'
 
 import RelayPoint from './RelayPoint'
 
@@ -15,8 +17,30 @@ const InputAndLabel = styled.div`
 const Label = styled.label`
   font-weight: bold;
 `
+
+const Button = styled.button`
+  background: #fff;
+  border: solid 2px ${colors.dark__dk};
+  color: ${colors.dark__dk};
+  font-weight: bold;
+  border-radius: 3px;
+  padding: 5px 10px;
+`
+
+notification.config({
+  duration: 6
+})
+
+const openNotification = (title, message) => {
+  notification.open({
+    message: title,
+    description: message
+  })
+}
+
 class CartForm extends React.Component {
   render () {
+    const { postCommande, postCommandeResponse } = this.props
     let commande = {
       'cli_id': '',
       'cli_name': '',
@@ -24,6 +48,10 @@ class CartForm extends React.Component {
       'date_com': moment().format('YYYY-MM-DD'),
       'point_relais_id': '',
       'listeLegumes': this.props.cart
+    }
+    // can't get why fetch is doe but promise is always rejected because of unexpected json
+    if (postCommandeResponse && (postCommandeResponse.fulfilled || postCommandeResponse.rejected)) {
+      openNotification('Mail reçu !', "si vous n'avez pas reçu de mail, contacter nous via l'adresse mail dev@triogrelinette.be")
     }
     return (
       <Fragment>
@@ -44,7 +72,8 @@ class CartForm extends React.Component {
               commande.cli_name = values.name
               commande.cli_tel = values.tel
               commande.point_relais_id = values.relayPoint
-              this.props.postCommande(commande)
+              openNotification('Merci de votre commande !', `Un mail à été envoyé à ${values.email}`)
+              postCommande(commande)
             }
           }
           render={({
@@ -86,9 +115,9 @@ class CartForm extends React.Component {
                 />
               </InputAndLabel>
               <RelayPoint handleChange={handleChange} />
-              <button type='submit'>
+              <Button type='submit'>
                 Valider ma commande
-              </button>
+              </Button>
             </Form>
           )}
         />
@@ -102,8 +131,7 @@ const ConnectedCartForm = connect(props => ({
     postCommandeResponse: {
       url: `/api/commandes/add`,
       method: 'POST',
-      body: JSON.stringify({ ...commande }),
-      then: console.log({ ...commande })
+      body: JSON.stringify({ ...commande })
     }
   })
 }))(CartForm)
