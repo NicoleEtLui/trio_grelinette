@@ -1,36 +1,42 @@
 import React from 'react'
-import { connect } from 'react-refetch'
-import { Spin } from 'antd'
+import styled from 'styled-components'
+import { Switch, Link, Route } from 'react-router-dom'
+import { Layout } from 'antd'
 
-import AuthService from '../../utils/AuthService'
+import Stock from './Stock'
+import Commandes from './Commandes'
+import { colors } from '../../../style/variables'
+const { Header, Footer, Content } = Layout
 
-class Admin extends React.Component {
-  constructor () {
-    super()
-    this.Auth = new AuthService()
-  }
-  getToken () {
-    return window.localStorage.getItem('id_token')
-  }
+const Nav = styled.div`
+  color: #fff;
+`
+const StyledLink = styled(Link)`
+  font-weight: bold;
+  color: #fff;
+  padding: 0 10px;
 
-  render () {
-    const {fetchCommandes} = this.props
-    if (fetchCommandes.pending) {
-      return <Spin />
-    }
-    if (fetchCommandes.fulfilled) {
-      return (
-        <div>{JSON.stringify(fetchCommandes.value)}</div>
-      )
-    }
+  &:hover {
+    color: ${colors.dark__lt};
   }
-}
+`
 
-export default connect(props => ({
-  fetchCommandes: {
-    url: `/api/commandes`,
-    headers: {
-      Authorization: JSON.stringify(`Bearer ${props.Auth.getToken()}`)
-    }
-  }
-}))(Admin)
+const Admin = Auth => (
+  <Layout>
+    <Header>
+      <Nav>
+        <StyledLink to='/admin/stock'>Stock</StyledLink>
+        <StyledLink to='/admin/commandes'>Commandes</StyledLink>
+      </Nav>
+    </Header>
+    <Content>
+      <Switch>
+        <Route path='/admin/stock' component={Stock} />
+        <Route {...Auth} path='/admin/commandes' render={() => <Commandes {...Auth} />} />
+      </Switch>
+    </Content>
+    <Footer>Footer</Footer>
+  </Layout>
+)
+
+export default Admin

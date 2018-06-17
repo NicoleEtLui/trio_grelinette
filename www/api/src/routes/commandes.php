@@ -5,8 +5,11 @@ use \Psr\Http\Message\ResponseInterface as Response;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+// Should return only pertinent command
+// for now return everything
 $app->get('/commandes', function(Request $request, Response $response) use ($database) {
   try {
+    $result=[];
     $commandes = $database->select("commandes", [
       "com_id",
       "cli_id",
@@ -16,7 +19,30 @@ $app->get('/commandes', function(Request $request, Response $response) use ($dat
       "point_relais_id",
       "prix"
     ]);
-    return $response->withJson($commandes, 200, JSON_UNESCAPED_UNICODE);
+
+    foreach ($commandes as $value) {
+
+      // print_r($value);
+      $value['listeLegumes'] = $database->select("legumes", [
+        "[>]com_leg" => "leg_id",
+      ], [
+        "legumes.leg_id",
+        "legumes.label",
+        "legumes.unite",
+        "legumes.prix",
+        "com_leg.nb_unite"
+      ],[
+        "com_leg.com_id" => $value["com_id"]
+      ]);
+      // echo gettype ($value);
+
+      // print_r($value);
+
+      $result[] = $value;
+    }
+    //print_r ($result);
+
+    return $response->withJson($result, 200, JSON_UNESCAPED_UNICODE);
   } catch(PDOException $e) {
     echo '{"error": {"text", '.$e->getMessage().'}}';
   }
